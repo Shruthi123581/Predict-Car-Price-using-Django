@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Audi Car Price Prediction</title>
+    <link rel="Icon" href="https://imgd.aeplcdn.com/0x0/n/cw/ec/51909/a4-exterior-right-front-three-quarter-2.jpeg">
+  </head>
+  <body>
+      <br>
+  <center style="background-color: rgba(120, 46, 252, 0.4); padding: 10px; color: white;"><div><h2><u>Audi Car Price Prediction based on different models</u></h2></div></center>
+  <div class="container"><div class="container">
+    <form method="POST" action="{%url 'predicts'%}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="rows" style="background-color: rgba(20, 46, 252, 0.4);">
+    <center>
+        <div class="form-group col-md-8">
+            <table class="table">
+            <tr>
+                <td><label>Car Model</label></td>
+                <td>
+                    <select class="custom-select" name="carmodel" id="carmodel">
+                        <option selected>Select...Model</option>
+                        <option value="0">A1</option>
+                        <option value="1">A6</option>
+                        <option value="2">A4</option>
+                        <option value="3">A3</option>
+                        <option value="4">Q3</option>
+                        <option value="5">Q5</option>
+                        <option value="6">A5</option>
+                        <option value="7">S4</option>
+                        <option value="8">Q2</option>
+                        <option value="9">A7</option>
+                        <option value="10">TT</option>
+                        <option value="11">Q7</option>
+                        <option value="12">RS6</option>
+                        <option value="13">RS3</option>
+                        <option value="14">A8</option>
+                        <option value="15">Q8</option>
+                        <option value="16">RS4</option>
+                        <option value="17">RS5</option>
+                        <option value="18">R8</option>
+                        <option value="19">SQ5</option>
+                        <option value="20">S8</option>
+                        <option value="21">SQ7</option>
+                        <option value="22">S3</option>
+                        <option value="23">S5</option>
+                        <option value="24">RS7</option>
+                        <option value="25">A2</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr><td><label>Launch Year: </label></td> <td><input type='text' class="form-control" name="caryear" placeholder="Ex: 1999, 2000, ..."></td></tr>
+
+            <tr>
+                <td><label>Car Transmission</label></td>
+                <td>
+                    <select class="custom-select" name="cartransmission" id="cartransmission">
+                        <option selected>Select...transmission</option>
+                        <option value="0">Manual</option>
+                        <option value="1">Automatic</option>
+                        <option value="2">Semi-Auto</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr><td><label>Mileage: </label></td> <td><input type='text' class="form-control" name="carmileage" placeholder="Ex: 15735, 36203, ..."></td></tr>
+
+            <tr>
+                    <td><label>Car Fuel Type</label></td>
+                    <td>
+                        <select class="custom-select" name="carfueltype" id="carfueltype">
+                            <option selected>Select...fueltype</option>
+                            <option value="0">Diesel</option>
+                            <option value="1">Petrol</option>
+                            <option value="2">Hybrid</option>
+                        </select>
+                    </td>
+            </tr>
+            
+            <tr><td><label>Tax: </label></td> <td><input type='text' class="form-control" name="cartax" placeholder="Ex: 150, 20, ..."></td></tr>
+            <tr><td><label>MPG: </label></td> <td><input type='text' class="form-control" name="carmpg" placeholder="Ex: 55.4, 64.2, ..."></td></tr>
+            <tr><td><label>Engine Size: </label></td> <td><input type='text' class="form-control" name="carengine" placeholder="Ex: 1.4, 2, ..."></td></tr>
+
+            <tr><td></td><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
+            </table>
+        </div>
+        {% if target %}
+        <div class="form-group col-md-8">
+            <table class="table table-striped" style="background-color: rgba(120, 26, 152, 0.4);">
+            <thead>
+                <tr>
+                <th scope="col"></th>
+                <th scope="col">Model</th>
+                <th scope="col">Year</th>
+                <th scope="col">Transmission</th>
+                <th scope="col">Mileage</th>
+                <th scope="col">FuelType</th>
+                <th scope="col">Tax</th>
+                <th scope="col">MPG</th>
+                <th scope="col">EngineSize</th>
+                <th scope="col">Price($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row"></th>
+                <td>{{carmodel}}</td>
+                <td>{{caryear}}</td>
+                <td>{{cartransmission}}</td>
+                <td>{{carmileage}}</td>
+                <td>{{carfueltype}}</td>
+                <td>{{cartax}}</td>
+                <td>{{carmpg}}</td>
+                <td>{{carengine}}</td>
+                <td>{{target}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </center>
+    </div>
+        </form>
+  </div></div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
